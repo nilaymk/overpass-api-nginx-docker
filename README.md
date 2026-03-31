@@ -1,4 +1,19 @@
-# How to use this image
+# Overpass API (nginx+docker)
+
+This is a fork of wiktron/Overpass-API and adapted to self build the docker image instead of using one on Docker registries.
+(e.g. because the default one on docker registry uses old version)
+
+## Generating a Dockerfile to create a docker image
+
+Use `update.py` to generate a `Dockerfile` from `Dockerfile.template`. Pass `--version` with a specific release or `latest` to automatically select the most recent one. The output defaults to `./Dockerfile` but can be changed with `--output`. Additional template parameters can be passed as `--param KEY=VALUE` pairs.
+
+```
+python3 update.py Dockerfile.template --version latest
+python3 update.py Dockerfile.template --version 0.7.62.11 --output path/to/Dockerfile
+python3 update.py Dockerfile.template --version latest --param OVERPASS_RULES_LOAD=50
+```
+
+## How to use the image
 
 By default, this image will clone an existing Overpass server for the whole planet, and make it available at `http://localhost/api/interpreter`.
 
